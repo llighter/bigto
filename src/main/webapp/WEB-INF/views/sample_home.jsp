@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="UTF-8" />
+<c:set var="Path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <c:import url="./structure/head.jsp" />
@@ -29,17 +30,17 @@
             </div>
             <div class="row articles">
                 <div class="col-md-4 col-sm-6 item">
-                    <a href="#"><img class="img-responsive" src="/to/resources/img/desk.jpg"></a>
+                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/desk.jpg"></a>
                     <h3 class="name">Article Title</h3>
                     <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
                         Aliquam varius finibus est, interdum justo suscipit id.</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
                 <div class="col-md-4 col-sm-6 item">
-                    <a href="#"><img class="img-responsive" src="/to/resources/img/building.jpg"></a>
+                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/building.jpg"></a>
                     <h3 class="name">Article Title</h3>
                     <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
                         Aliquam varius finibus est, interdum justo suscipit id.</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
                 <div class="col-md-4 col-sm-6 item">
-                    <a href="#"><img class="img-responsive" src="/to/resources/img/loft.jpg"></a>
+                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/loft.jpg"></a>
                     <h3 class="name">Article Title</h3>
                     <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
                         Aliquam varius finibus est, interdum justo suscipit id.</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>

@@ -1,8 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="Path" value="${pageContext.request.contextPath}"/>
+
 <div>
 	<nav class="navbar navbar-default navigation-clean-search">
 	    <div class="container">
 	        <div class="navbar-header">
-	            <a class="navbar-brand navbar-link" href="#"><img src="/to/resources/img/smartphone (1).png" id="logo">CTO Research</a>
+	            <a class="navbar-brand navbar-link" href="#"><img src="${ Path }/resources/img/smartphone (1).png" id="logo">CTO Research</a>
 	            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 	        </div>
 	        <div class="collapse navbar-collapse" id="navcol-1">
