@@ -20,4 +20,11 @@ public class SampleController {
 		mav.setViewName("sample");
 		return mav;
 	}
+	
+	@RequestMapping("sample_home.do")
+	public ModelAndView sample_home(Sample sam, ModelAndView mav){
+		mav.addObject("sample", service.sample(sam));
+		mav.setViewName("sample_home");
+		return mav;
+	}
 }
