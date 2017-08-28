@@ -1,0 +1,14 @@
+수정 사항 : project폴더 우클릭 -> Properties
+수정 내용 :
+- 프로젝트 오른쪽 버튼 클릭 -> Properties -> Java Build Path -> Libraries 에서 JavaSE1.6을 1.8로 변경
+	(Add Library -> JRE System Library -> 1.8
+	Remove -> 1.6버전 제거
+
+- 프로젝트 오른쪽 버튼 클릭 -> Properties -> Java Compiler
+	설정에서 Compiler compliance level 을 1.8로 지정
+
+- 프로젝트 오른쪽 버튼 클릭 -> Properties -> Project Facets
+	Dynamic Web Module 을 3.0 으로, java는 1.8로 설정
+
+- 프로젝트 오른쪽 버튼 클릭 -> Maven -> Update Project
+	선택해서 설정 내용을 적용

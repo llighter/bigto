@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.big.to.repository.SampleDAO">
+	<resultMap type="sample" id="sampleResult" />
+	<select id="sample" resultMap="sampleResult">
+		SELECT model FROM cetizen WHERE ID LIMIT 10;
+	</select>
+</mapper>
