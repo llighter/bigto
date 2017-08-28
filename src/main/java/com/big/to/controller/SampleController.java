@@ -21,10 +21,19 @@ public class SampleController {
 		return mav;
 	}
 	
+	// 샘플 메인화
 	@RequestMapping("sample_home.do")
 	public ModelAndView sample_home(Sample sam, ModelAndView mav){
-		mav.addObject("sample", service.sample(sam));
+//		mav.addObject("sample", service.sample(sam));
 		mav.setViewName("sample_home");
+		return mav;
+	}
+	
+	// 샘플 그래프 조회 화면
+	@RequestMapping("sample_graph.do")
+	public ModelAndView sample_graph(Sample sam, ModelAndView mav){
+//		mav.addObject("sample", service.sample(sam));
+		mav.setViewName("sample_graph");
 		return mav;
 	}
 }
