@@ -5,6 +5,7 @@
 	<typeAliases>
 		<!-- 별명 설정 -->
 		<typeAlias alias="sample" type="com.big.to.vo.Sample"/>
+		<typeAlias alias="samplePhone" type="com.big.to.vo.SamplePhone"/>
 	</typeAliases>
 </configuration>
 	

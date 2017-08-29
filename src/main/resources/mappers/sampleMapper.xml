@@ -4,7 +4,26 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.big.to.repository.SampleDAO">
 	<resultMap type="sample" id="sampleResult" />
+	<resultMap type="samplePhone" id="samplePhoneResult" />
+	
 	<select id="sample" resultMap="sampleResult">
 		SELECT model FROM cetizen WHERE ID LIMIT 10;
+	</select>
+	
+	<!-- 아이폰6이고 용량이 16GB이고 상태가 '상'이고 변경이 확정기변인 데이터를 날짜별 평균 값으로 조회 -->
+	
+	<select id="samplePhone" resultMap="samplePhoneResult">
+		select 
+			date
+			,round(avg(price),0) as price
+		from 
+			cetizen_cp_part
+		where
+			krname like '아이폰6' 
+			and model like '%16%' 
+			and conditions like '상%' 
+			and changes like '확정기변' 
+		group by
+			date;
 	</select>
 </mapper>

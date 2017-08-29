@@ -18,8 +18,21 @@ $( document ).ready(function() {
 //			console.log(dataset.data);
 //			dataset.data = [19,12,5,3,3,2];
 //			console.log(dataset.data);
-			
 		});
+	});
+	
+	$('#phone').click(function(e) {
+		$.get("/to/update_graph_iphone.do", function(data, status){
+	        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+	        
+	        // 받아온 데이터를 추가한다.
+	        config.type = data.type;
+	        config.data.label = data.label;
+	        config.data.labels = data.labels;
+	        config.data.datasets[0].data = data.data;
+	        
+	        window.myLine.update();
+	    });
 		
 		
 	});

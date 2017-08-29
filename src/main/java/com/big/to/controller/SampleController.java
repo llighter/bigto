@@ -2,6 +2,7 @@ package com.big.to.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.big.to.service.SampleService;
 import com.big.to.vo.Sample;
+import com.big.to.vo.SamplePhone;
 
 @Controller
 @RequestMapping("/*")
@@ -62,6 +64,27 @@ public class SampleController {
 		td.arr.add(random.nextInt(30));
 		
 		resultMap.put("test", td);
+		
+		return resultMap;
+	}
+	
+	// ajax로 그래프 데이터 호출
+	@RequestMapping(value="update_graph_iphone.do", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> updateGraphiPhone() {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<SamplePhone> spList = service.samplePhone();
+		List<String> labels = new ArrayList<String>();
+		List<Integer> data = new ArrayList<Integer>();
+		
+		for(SamplePhone sp : spList) {
+			labels.add(sp.getDate());
+			data.add(sp.getPrice());
+		}
+		resultMap.put("type", "line");
+		resultMap.put("labels", labels);
+		resultMap.put("data", data);
+		resultMap.put("label", "iPhone6");
 		
 		return resultMap;
 	}

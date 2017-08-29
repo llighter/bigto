@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.big.to.repository.SampleDAO;
 import com.big.to.vo.Sample;
+import com.big.to.vo.SamplePhone;
 
 @Service
 public class SampleService {
@@ -15,6 +16,10 @@ public class SampleService {
 
 	public List<Sample> sample(Sample sam) {
 		return dao.sample(sam);
+	}
+	
+	public List<SamplePhone> samplePhone() {
+		return dao.samplePhone();
 	}
 	
 }
