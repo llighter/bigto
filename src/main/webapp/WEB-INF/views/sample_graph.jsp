@@ -20,6 +20,7 @@
                         <option value="14">This is item 3</option>
                     </optgroup>
                 </select>
+                <button id="randomizeData">Randomize Data</button>
             </div>
         </div>
         <div class="row">

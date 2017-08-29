@@ -1,5 +1,32 @@
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
+$( document ).ready(function() {
+	var ctx = document.getElementById("myChart").getContext('2d');
+//	var myChart = new Chart(ctx, config);
+	window.myLine = new Chart(ctx, config);
+	
+	$('#randomizeData').click(function(e) {
+		config.data.datasets.forEach(function(dataset) {
+			// 새로 받은 데이터를 설정하는 부분(서버 호출)
+			$.get("/to/update_graph.do", function(data, status){
+		        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+		        
+		        // 받아온 데이터를 추가한다.
+		        dataset.data = data.test.arr;
+		        window.myLine.update();
+		    });
+			
+			// 새로 받은 데이터를 설정하는 부분(직접 설정)
+//			console.log(dataset.data);
+//			dataset.data = [19,12,5,3,3,2];
+//			console.log(dataset.data);
+			
+		});
+		
+		
+	});
+});
+
+
+var config = {
     type: 'line',
     data: {
         labels: ["8/10", "8/11", "8/12", "8/13", "8/14", "8/15"],
@@ -63,4 +90,6 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-});
+}
+
+
