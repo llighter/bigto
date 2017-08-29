@@ -2,7 +2,7 @@ $( document ).ready(function() {
 	var ctx = document.getElementById("myChart").getContext('2d');
 //	var myChart = new Chart(ctx, config);
 	window.myLine = new Chart(ctx, config);
-	
+	alert(path);
 	$('#randomizeData').click(function(e) {
 		config.data.datasets.forEach(function(dataset) {
 			// 새로 받은 데이터를 설정하는 부분(서버 호출)
