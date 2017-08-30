@@ -13,7 +13,7 @@
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.3.0.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.10</org.aspectj-version>
-		<org.slf4j-version>1.7.25</org.slf4j-version>
+		<org.slf4j-version>1.7.21</org.slf4j-version>
 	</properties>
 	
 	
@@ -140,12 +140,31 @@
 		</dependency>
         
 		<!-- AspectJ : 포인트 컷을 위한 라이브러리???-->
-		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
+			 <groupId>org.aspectj</groupId>
+			 <artifactId>aspectjweaver</artifactId>
+			 <version>1.8.9</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+<!-- 		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjrt</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+		 
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+		 
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjtools</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+ -->
+
 
 
 		<!-- Logging -->
