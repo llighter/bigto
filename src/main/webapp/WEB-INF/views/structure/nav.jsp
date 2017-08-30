@@ -10,9 +10,8 @@
 	        </div>
 	        <div class="collapse navbar-collapse" id="navcol-1">
 	            <ul class="nav navbar-nav navbar-left">
-	                <li class="active" role="presentation"><a href="#">Link 1</a></li>
-	                <li role="presentation"><a href="#">Link 2</a></li>
-	                <li role="presentation"><a href="#">Link 3</a></li>
+	                <li class="active" role="presentation"><a href="#"><i class="ion-stats-bars"></i><span id="graph-menu"> Graph</span></a></li>
+	                <li role="presentation"><a href="#"><i class="ion-ios-flask"></i><span id="analysis-menu"> Analysis</span></a></li>
 	            </ul>
 	            <form class="navbar-form navbar-left" target="_self">
 	                <div class="form-group">
