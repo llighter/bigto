@@ -2,6 +2,7 @@ $( document ).ready(function() {
 	var ctx = document.getElementById("myChart").getContext('2d');
 //	var myChart = new Chart(ctx, config);
 	window.myLine = new Chart(ctx, config);
+	
 	$('#randomizeData').click(function(e) {
 		config.data.datasets.forEach(function(dataset) {
 			// 새로 받은 데이터를 설정하는 부분(서버 호출)
@@ -13,11 +14,6 @@ $( document ).ready(function() {
 		        dataset.data = data.test.arr;
 		        window.myLine.update();
 		    });
-			
-			// 새로 받은 데이터를 설정하는 부분(직접 설정)
-//			console.log(dataset.data);
-//			dataset.data = [19,12,5,3,3,2];
-//			console.log(dataset.data);
 		});
 	});
 	
@@ -36,6 +32,88 @@ $( document ).ready(function() {
 		
 		
 	});
+	
+	$('#spec').click(function(e) {
+		var krname = $("#krname").val();
+		var gb = $("#gb").val();
+		var conditions = $("#conditions").val();
+		var changes = $("#changes").val();
+		
+		$.get(path+"/query_line_phone.do"
+				, {
+					krname: krname,
+					gb: gb,
+					conditions: conditions,
+					changes: changes
+				}, function(data, status){
+			        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+			        
+			        // 받아온 데이터를 추가한다.
+			        config.type = data.type;
+			        config.data.label = data.label;
+			        config.data.labels = data.labels;
+			        config.data.datasets[0].data = data.data;
+			        
+			        window.myLine.update();
+			    });
+	});
+	
+	
+	$.getJSON(path+"/krnameList.do", function(data){
+		var options = '';
+		options += '<option value="">--select--</option>';
+		for (var i = 0; i < data.krnameList.length; i++) {
+		  options += '<option value="' + data.krnameList[i] + '">' + data.krnameList[i] + '</option>';
+		}
+		$("select#krname").html(options);
+	});
+	
+	$("select#krname").change(function() {
+		var krname = $("#krname").val();
+		
+		$.getJSON(path+"/gbList.do"
+				,{ krname: krname }
+				,function(data){
+					var options = '';
+					options += '<option value="">--select--</option>';
+					for (var i = 0; i < data.gbList.length; i++) {
+						options += '<option value="' + data.gbList[i] + '">' + data.gbList[i] + '</option>';
+					}
+					$("select#gb").html(options);
+				});
+	});
+	$("select#gb").change(function() {
+		var krname = $("#krname").val();
+		var gb = $("#gb").val();
+		
+		$.getJSON(path+"/conditionsList.do"
+				,{ krname: krname, gb: gb}
+				,function(data){
+					var options = '';
+					options += '<option value="">--select--</option>';
+					for (var i = 0; i < data.conditionsList.length; i++) {
+						options += '<option value="' + data.conditionsList[i] + '">' + data.conditionsList[i] + '</option>';
+					}
+					$("select#conditions").html(options);
+				});
+	});
+	$("select#conditions").change(function() {
+		var krname = $("#krname").val();
+		var gb = $("#gb").val();
+		var conditions = $("#conditions").val();
+		
+		$.getJSON(path+"/changesList.do"
+				,{ krname: krname, gb: gb, conditions:conditions }
+				,function(data){
+					var options = '';
+					options += '<option value="">--select--</option>';
+					for (var i = 0; i < data.changesList.length; i++) {
+					  options += '<option value="' + data.changesList[i] + '">' + data.changesList[i] + '</option>';
+					}
+					$("select#changes").html(options);
+				});
+	});
+	
 });
 
 
