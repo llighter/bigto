@@ -18,13 +18,18 @@ package com.big.to.vo;
 
 import java.util.Date;
 
-public class TotalPhone {
+public class TotalIphone {
 	private int id;
 	private Date postdate;
+	private Date reldate;
+	private Date disdate;
+	private Date dategap;
 	private String model;
 	private String gb;
 	private String krname;
 	private int soldprice;
+	private int relprice;
+	private int soldrate;
 	private String contract;
 	private String agency;
 	private String guarantee;
@@ -43,6 +48,24 @@ public class TotalPhone {
 	}
 	public void setPostdate(Date postdate) {
 		this.postdate = postdate;
+	}
+	public Date getReldate() {
+		return reldate;
+	}
+	public void setReldate(Date reldate) {
+		this.reldate = reldate;
+	}
+	public Date getDisdate() {
+		return disdate;
+	}
+	public void setDisdate(Date disdate) {
+		this.disdate = disdate;
+	}
+	public Date getDategap() {
+		return dategap;
+	}
+	public void setDategap(Date dategap) {
+		this.dategap = dategap;
 	}
 	public String getModel() {
 		return model;
@@ -67,6 +90,18 @@ public class TotalPhone {
 	}
 	public void setSoldprice(int soldprice) {
 		this.soldprice = soldprice;
+	}
+	public int getRelprice() {
+		return relprice;
+	}
+	public void setRelprice(int relprice) {
+		this.relprice = relprice;
+	}
+	public int getSoldrate() {
+		return soldrate;
+	}
+	public void setSoldrate(int soldrate) {
+		this.soldrate = soldrate;
 	}
 	public String getContract() {
 		return contract;
@@ -110,8 +145,5 @@ public class TotalPhone {
 	public void setSold(String sold) {
 		this.sold = sold;
 	}
-	
-	
-	
-	
+
 }
