@@ -10,7 +10,7 @@ import java.util.Date;
 //		`relprice` INT(11) NULL DEFAULT NULL,
 //		`disdate` DATE NULL DEFAULT NULL
 //	)
-public class Info {
+public class InfoIphone {
 	private String model;
 	private String krname;
 	private String gb;
