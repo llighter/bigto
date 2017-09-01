@@ -122,7 +122,8 @@ var config = {
     data: {
         labels: ["8/10", "8/11", "8/12", "8/13", "8/14", "8/15"],
         datasets: [{
-            label: 'price of iPhone7',
+            type: 'line',
+        	label: 'price of iPhone7',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
