@@ -12,9 +12,7 @@
 			POSTDATE, COUNT(*) AS COUNT
 		FROM
 			TOTAL_IPHONE
-		GROUP BY 
-			DATE
-		HAVING
+		WHERE
 			KRNAME LIKE #{krname} AND 
 			GB LIKE #{gb} AND
 			CONDITIONS LIKE CONCAT(#{conditions}, '%') AND
@@ -22,6 +20,8 @@
 			CONTRACT LIKE #{contract} AND
 			GURANTEE LIKE #{gurantee} AND
 			SOLD LIKE CONCAT(#{sold}, '%')
+		GROUP BY 
+			POSTDATE
 	</select>
 	
 	<!-- 한국모델명 -->
