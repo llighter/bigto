@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.big.to.vo.TotalIphone;
 
 @Repository
-public interface SoldOrNotCompareDAO {
-	public ArrayList<TotalIphone> avgPriceList(Map<String, Object> map);
+public interface PostCountDAO {
+	public ArrayList<TotalIphone> countList(Map<String, Object> map);
 	public ArrayList<String> krnameList();
 	public ArrayList<String> gbList(String krname);
 	public ArrayList<String> conditionsList(Map<String, Object> map);

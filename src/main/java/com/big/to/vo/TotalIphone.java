@@ -37,6 +37,8 @@ public class TotalIphone {
 	private String conditions;
 	private String component;
 	private String sold;
+	private int count;
+	
 	public int getId() {
 		return id;
 	}
@@ -145,5 +147,12 @@ public class TotalIphone {
 	public void setSold(String sold) {
 		this.sold = sold;
 	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 
 }
