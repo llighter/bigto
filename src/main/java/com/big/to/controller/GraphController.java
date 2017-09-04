@@ -13,30 +13,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.big.to.service.GraphService;
-import com.big.to.vo.Graph;
+import com.big.to.vo.TotalIphone;
 
 @Controller
-@RequestMapping("/graph")
+@RequestMapping("/graph/")
 public class GraphController {
 	@Autowired(required = false)
 	GraphService service;
 	
-	@RequestMapping(value = "selectKrnameList.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> querySelectKrnameList() {
+	@RequestMapping(value = "krnameList.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryKrnameList() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> selectKrnameList = service.selectKrnameList();
-		resultMap.put("krnameList", selectKrnameList);
+		List<String> krnameList = service.krnameList();
+		resultMap.put("krnameList", krnameList);
 		return resultMap;
 	}
 
-	@RequestMapping(value = "selectGbList.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> querySelectGbList(
+	@RequestMapping(value = "gbList.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryGbList(
 			@RequestParam("krname") String krname) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> selectGbList = service.selectGbList(krname);
-		resultMap.put("gbList", selectGbList);
+		List<String> gbList = service.gbList(krname);
+		resultMap.put("gbList", gbList);
 		return resultMap;
 	}
+	@RequestMapping(value="conditionsList.do", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryConditionsList(
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<String> conditionsList = service.conditionsList(krname, gb);
+		resultMap.put("conditionsList", conditionsList);
+		return resultMap;
+	}
+	@RequestMapping(value="changesList.do", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryChangesList(
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<String> changesList = service.changesgbList(krname, gb, conditions);
+		resultMap.put("changesList", changesList);
+		return resultMap;
+	}
+	
+	
 	
 	@RequestMapping(value = "selectTerm.do", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> querySelectTerm(
@@ -45,7 +66,6 @@ public class GraphController {
 		List<String> selectTerm = service.selectTerm(krname, gb);
 		
 		resultMap.put("term", selectTerm);
-
 		return resultMap;
 	}
 	
@@ -63,15 +83,19 @@ public class GraphController {
 	
 	@RequestMapping(value = "lineSingle.do", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> queryLineSingle(
-			@RequestParam("krname") String krname, @RequestParam("gb") String gb,
-			@RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date) {
-
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions,
+			@RequestParam("changes") String changes,
+			@RequestParam("start_date") String start_date,
+			@RequestParam("end_date") String end_date) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<Graph> spList = service.lineSingle(krname, gb);
+		List<TotalIphone> spList = service.lineSingle(
+				krname, gb, conditions, changes, start_date, end_date);
 		List<String> labels = new ArrayList<String>();
 		List<Integer> data = new ArrayList<Integer>();
 
-		for (Graph sp : spList) {
+		for (TotalIphone sp : spList) {
 			labels.add(Dogu.strForm(sp.getPostdate()));
 			data.add(sp.getSoldprice());
 		}
@@ -84,17 +108,21 @@ public class GraphController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value = "lineMulti.do", method = RequestMethod.GET)
+/*	@RequestMapping(value = "lineMulti.do", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> queryMulti(
-			@RequestParam("krname") String krname, @RequestParam("gb") String gb,
-			@RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date) {
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions,
+			@RequestParam("changes") String changes,
+			@RequestParam("start_date") String start_date,
+			@RequestParam("end_date") String end_date) {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<Graph> spList = service.lineMulti(krname, gb);
+		List<TotalIphone> spList = service.lineMulti(krname, gb);
 		List<String> labels = new ArrayList<String>();
 		List<Integer> data = new ArrayList<Integer>();
 		
-		for (Graph sp : spList) {
+		for (TotalIphone sp : spList) {
 			labels.add(Dogu.strForm(sp.getPostdate()));
 			data.add(sp.getSoldprice());
 		}
@@ -105,20 +133,24 @@ public class GraphController {
 		resultMap.put("label", krname);
 		
 		return resultMap;
-	}
+	}*/
 	
-	@RequestMapping(value = "barSingle.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> queryBarSingle(
-			@RequestParam("krname") String krname, @RequestParam("gb") String gb,
-			@RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date) {
+	@RequestMapping(value = "barSingleSoldCount.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryBarSingleSoldCount(
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions,
+			@RequestParam("changes") String changes,
+			@RequestParam("start_date") String start_date,
+			@RequestParam("end_date") String end_date) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		String krGb = service.renameKrnameGb(krname, gb);
-		List<Graph> spList = service.barSingle(krGb);
+		List<TotalIphone> spList = service.barSingleSoldCount(
+				krname, gb, conditions, changes, start_date, end_date);
 		List<String> labels = new ArrayList<String>();
 		List<Integer> data = new ArrayList<Integer>();
 
-		for (Graph sp : spList) {
+		for (TotalIphone sp : spList) {
 			labels.add(Dogu.strForm(sp.getPostdate()));
 			data.add(sp.getSoldcount());
 		}
@@ -128,6 +160,34 @@ public class GraphController {
 		resultMap.put("data", data);
 		resultMap.put("label", krname);
 
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "barSingleRegCount.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryBarSingleRegCount(
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions,
+			@RequestParam("changes") String changes,
+			@RequestParam("start_date") String start_date,
+			@RequestParam("end_date") String end_date) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<TotalIphone> spList = service.barSingleRegCount(
+				krname, gb, conditions, changes, start_date, end_date);
+		List<String> labels = new ArrayList<String>();
+		List<Integer> data = new ArrayList<Integer>();
+		
+		for (TotalIphone sp : spList) {
+			labels.add(Dogu.strForm(sp.getPostdate()));
+			data.add(sp.getSoldcount());
+		}
+		
+		resultMap.put("type", "bar");
+		resultMap.put("labels", labels);
+		resultMap.put("data", data);
+		resultMap.put("label", krname);
+		
 		return resultMap;
 	}
 	

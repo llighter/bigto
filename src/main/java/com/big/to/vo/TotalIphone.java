@@ -44,6 +44,10 @@ public class TotalIphone {
 	//첫등록일, 마지막 등록일
 	private Date start_date;
 	private Date end_date;
+	//판매량,등록양
+	private int soldcount;
+	private int regcount;
+	
 	
 	public int getId() {
 		return id;
@@ -176,6 +180,18 @@ public class TotalIphone {
 	}
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
+	}
+	public int getSoldcount() {
+		return soldcount;
+	}
+	public void setSoldcount(int soldcount) {
+		this.soldcount = soldcount;
+	}
+	public int getRegcount() {
+		return regcount;
+	}
+	public void setRegcount(int regcount) {
+		this.regcount = regcount;
 	}
 
 

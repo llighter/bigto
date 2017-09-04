@@ -20,7 +20,7 @@
 
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 
-		<property name="url" value="jdbc:log4jdbc:mariadb://35.190.226.198:3306/test" />
+		<property name="url" value="jdbc:log4jdbc:mariadb://35.190.226.198:3306/apple" />
 		<property name="username" value="root"/>
 		<property name="password" value="abc123"/>
 	</bean>

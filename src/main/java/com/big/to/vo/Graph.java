@@ -76,5 +76,11 @@ public class Graph {
 	public void setSoldcount(int soldcount) {
 		this.soldcount = soldcount;
 	}
+	public int getRegcount() {
+		return regcount;
+	}
+	public void setRegcount(int regcount) {
+		this.regcount = regcount;
+	}
 	
 }
