@@ -1,7 +1,6 @@
 package com.big.to.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +25,7 @@ public class GraphController {
 	public @ResponseBody Map<String, Object> querySelectKrnameList() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<String> selectKrnameList = service.selectKrnameList();
-
-		resultMap.put("selectKrnameList", selectKrnameList);
-
+		resultMap.put("krnameList", selectKrnameList);
 		return resultMap;
 	}
 
@@ -36,19 +33,16 @@ public class GraphController {
 	public @ResponseBody Map<String, Object> querySelectGbList(@RequestParam("krname") String krname) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<String> selectGbList = service.selectGbList(krname);
-
-		resultMap.put("selectGbList", selectGbList);
-
+		resultMap.put("gbList", selectGbList);
 		return resultMap;
 	}
 	
 	@RequestMapping(value = "selectTerm.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> querySelectTerm(
-			@RequestParam("krname") String krname, @RequestParam("gb") String gb) {
+	public @ResponseBody Map<String, Object> querySelectTerm(@RequestParam("krnameGb") String krnameGb) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> selectTerm = service.selectTerm(krname, gb);
-
-		resultMap.put("selectTerm", selectTerm);
+		List<String> selectTerm = service.selectTerm(krnameGb);
+		
+		resultMap.put("term", selectTerm);
 
 		return resultMap;
 	}

@@ -12,7 +12,7 @@ public interface GraphDAO {
 	
 	public List<String> selectKrnameList();
 	public List<String> selectGbList(String krname);
-	public List<String> selectTerm(String krname, String gb);
+	public List<String> selectTerm(String krnameGb);
 	
 	public List<Graph> lineA(Map<String, Object> map);
 	

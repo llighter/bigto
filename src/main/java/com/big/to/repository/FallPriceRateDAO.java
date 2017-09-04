@@ -10,7 +10,6 @@ import com.big.to.vo.TotalIphone;
 
 @Repository
 public interface FallPriceRateDAO {
-	// total_iphone
 	public ArrayList<TotalIphone> fallRateList(Map<String, Object> map);
 	public ArrayList<String> krnameList();
 	public ArrayList<String> gbList(String krname);

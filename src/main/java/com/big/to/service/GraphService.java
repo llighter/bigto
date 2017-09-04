@@ -23,8 +23,8 @@ public class GraphService {
 		return dao.selectGbList(krname);
 	}
 	
-	public List<String> selectTerm(String krname, String gb) {
-		return dao.selectTerm(krname, gb);
+	public List<String> selectTerm(String krnameGb) {
+		return dao.selectTerm(krnameGb);
 	}
 	
 	public List<Graph> lineA(String krname, String gb) {

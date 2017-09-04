@@ -1,5 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:requestEncoding value="UTF-8" />
+<c:set var="Path" value="<%= request.getContextPath() %>"/>
 
 <html>
 <head>
@@ -7,28 +11,21 @@
 <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 </head>
 <body>
-   <h1>Hello world!</h1>
+	<h1>Hello world!</h1>
 
-   <P>The time on the server is ${serverTime}.</P>
+	<P>The time on the server is ${serverTime}.</P>
 
-   <div class="container">
-      <input id="txtEmail" type="email" placeholder="Email">
-      
-      <input id="txtPassword" type="password"
-      placeholder="Password">
-      
-      <button id="btnLogin" class="btn btn-action">
-         Log in
-      </button>
-      
-      <button id="btnSignUp" class="btn btn-secondary">
-         Sign Up
-      </button>
+	<div class="container">
+		<input id="txtEmail" type="email" placeholder="Email"> <input
+			id="txtPassword" type="password" placeholder="Password">
 
-      <button id="btnLogout" class="btn btn-action hide">
-         Log out
-      </button>
-   </div>
+		<button id="btnLogin" class="btn btn-action">Log in</button>
+
+		<button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
+
+		<button id="btnLogout" class="btn btn-action hide">Log out</button>
+	</div>
+	<form name="whynotForm"></form>
 </body>
 
 
@@ -86,17 +83,26 @@
    });
 
    // Add a realtime listener
+   var cfm = false;
    firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser){
          console.log(firebaseUser);
-         alert("WHYNOT!!");
-         btnLogout.classList.remove('hide');
+         cfm = confirm("GO sample_home?");
+         if(cfm == true){
+        	 document.whynotForm.action ="${Path}/sample_home.do";
+             document.whynotForm.method="post";
+        	 document.whynotForm.submit();
+         }else{
+        	 alert(firebaseUser.displayName);
+         }	     
+    	 btnLogout.classList.remove('hide');
       } else {
          console.log('not logged in');
-         btnLogout.classList.add('hide');
+         btnLogout.classList.remove('hide');
       }
    });
-     
+   
+   
    /* https://www.youtube.com/watch?v=-OKrloDzGpU&vl=ko */
 
    var provider = new firebase.auth.GoogleAuthProvider();
@@ -125,7 +131,7 @@
 	   // ...
 	 });
    
-   
+ 
    // 데이터 베이스
    // Set the configuration for your app
    // TODO: Replace with your project's config object
@@ -139,9 +145,10 @@
 
    // Get a reference to the database service
    var database = firebase.database();
+
+
    
-   
-   {
+/*    {
 	   // Chats contains only meta info about each conversation
 	   // stored under the chats's unique ID
 	   "chats": {
@@ -183,14 +190,7 @@
 	     "two": { ... },
 	     "three": { ... }
 	   }
-	 }
-   
-   
-   
+	 } */
+ 
 }());
-  
-
-  /* whynot client print????
-  https://developers.google.com/android/guides/client-auth
-    */
 </script>
