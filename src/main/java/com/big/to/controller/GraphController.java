@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.big.to.service.GraphService;
-import com.big.to.vo.SamplePhone;
+import com.big.to.vo.Graph;
 
 @Controller
 @RequestMapping("/graph")
@@ -23,43 +21,50 @@ public class GraphController {
 	@Autowired(required = false)
 	GraphService service;
 	
-	// TODO : 
-
-	// ajax로 그래프 데이터 호출
-	@RequestMapping(value = "update_graph.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> updateGraph() {
+	@RequestMapping(value = "selectKrnameList.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> querySelectKrnameList() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		testDomain td = new testDomain();
-		Random random = new Random();
+		List<String> selectKrnameList = service.selectKrnameList();
 
-		// td 인스턴스의 arr변수에 랜덤 값을 넣는다.
-		// 0~30 까지의 정수.
-		td.arr = new ArrayList<Integer>();
-		td.arr.add(random.nextInt(30));
-		td.arr.add(random.nextInt(30));
-		td.arr.add(random.nextInt(30));
-		td.arr.add(random.nextInt(30));
-		td.arr.add(random.nextInt(30));
-		td.arr.add(random.nextInt(30));
-
-		resultMap.put("test", td);
+		resultMap.put("selectKrnameList", selectKrnameList);
 
 		return resultMap;
 	}
 
-	@RequestMapping(value = "query_line_phone.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> queryLinePhone(@RequestParam("krname") String krname,
-			@RequestParam("gb") String gb, @RequestParam("conditions") String conditions,
-			@RequestParam("changes") String changes) {
+	@RequestMapping(value = "selectGbList.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> querySelectGbList(@RequestParam("krname") String krname) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<String> selectGbList = service.selectGbList(krname);
+
+		resultMap.put("selectGbList", selectGbList);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "selectTerm.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> querySelectTerm(
+			@RequestParam("krname") String krname, @RequestParam("gb") String gb) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<String> selectTerm = service.selectTerm(krname, gb);
+
+		resultMap.put("selectTerm", selectTerm);
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "lineA.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryLineA(
+			@RequestParam("krname") String krname, @RequestParam("gb") String gb,
+			@RequestParam("startDay") String startDay, @RequestParam("endDay") String endDay) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<SamplePhone> spList = service.phoneLine(krname, gb, conditions, changes);
+		List<Graph> spList = service.lineA(krname, gb);
 		List<String> labels = new ArrayList<String>();
 		List<Integer> data = new ArrayList<Integer>();
 
-		for (SamplePhone sp : spList) {
-			labels.add(sp.getDate());
-			data.add(sp.getPrice());
+		for (Graph sp : spList) {
+			labels.add(Dogu.strForm(sp.getPostdate()));
+			data.add(sp.getSoldprice());
 		}
 
 		resultMap.put("type", "line");
@@ -69,64 +74,17 @@ public class GraphController {
 
 		return resultMap;
 	}
+	
+	
+	// TODO : 
 
-	@RequestMapping(value = "krnameList.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> queryKrnameList() {
+	// ajax로 그래프 데이터 호출
+	@RequestMapping(value = "updateAll.do", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> updateAll() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> krnameList = service.krnameList();
-
-		resultMap.put("krnameList", krnameList);
 
 		return resultMap;
 	}
-
-	@RequestMapping(value = "gbList.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> queryGbList(@RequestParam("krname") String krname) {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> gbList = service.gbList(krname);
-
-		resultMap.put("gbList", gbList);
-
-		return resultMap;
-	}
-
-	@RequestMapping(value = "conditionsList.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> queryConditionsList(@RequestParam("krname") String krname,
-			@RequestParam("gb") String gb) {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> conditionsList = service.conditionsList(krname, gb);
-
-		resultMap.put("conditionsList", conditionsList);
-
-		return resultMap;
-	}
-
-	@RequestMapping(value = "changesList.do", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> queryChangesList(@RequestParam("krname") String krname,
-			@RequestParam("gb") String gb, @RequestParam("conditions") String conditions) {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<String> changesList = service.changesgbList(krname, gb, conditions);
-
-		resultMap.put("changesList", changesList);
-
-		return resultMap;
-	}
-}
-
-class testDomain {
-	ArrayList<Integer> arr;
-
-	// public testDomain(ArrayList<Integer> arr) {
-	// super();
-	// this.arr = arr;
-	// }
-
-	public ArrayList<Integer> getArr() {
-		return arr;
-	}
-
-	public void setArr(ArrayList<Integer> arr) {
-		this.arr = arr;
-	}
+	
 
 }

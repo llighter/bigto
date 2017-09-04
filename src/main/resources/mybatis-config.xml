@@ -8,6 +8,7 @@
 		<typeAlias alias="samplePhone" type="com.big.to.vo.SamplePhone"/>
 		<typeAlias alias="totalIphone" type="com.big.to.vo.TotalIphone"/>
 		<typeAlias alias="infoIphone" type="com.big.to.vo.InfoIphone"/>
+		<typeAlias alias="graph" type="com.big.to.vo.Graph"/>
 	</typeAliases>
 </configuration>
 	
