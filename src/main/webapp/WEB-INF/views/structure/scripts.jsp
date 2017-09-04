@@ -9,3 +9,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
 <script src="${ Path }/resources/js/Simple-Slider.js"></script>
 <script src="${ Path }/resources/js/chart_example.js"></script>
+<%-- <script src="${ Path }/resources/js/chart_common.js"></script> --%>

@@ -37,6 +37,10 @@ public class TotalIphone {
 	private String conditions;
 	private String component;
 	private String sold;
+	// PostCount에 사용
+	private int count;
+	// FallPriceRate에 사용
+	private double fallrate;
 	
 	public int getId() {
 		return id;
@@ -146,5 +150,18 @@ public class TotalIphone {
 	public void setSold(String sold) {
 		this.sold = sold;
 	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public double getFallrate() {
+		return fallrate;
+	}
+	public void setFallrate(double fallrate) {
+		this.fallrate = fallrate;
+	}
+	
 
 }

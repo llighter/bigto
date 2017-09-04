@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.big.to.repository.PostCountDAO">
+	<resultMap type="totalIphone" id="totalIphoneResult"/>
+	<resultMap type="java.lang.String" id="string" />
+	
+	<!-- 특정 모델의 조건에 따른 기간별 판매게시수 조회  -->
+	<select id="postCountList" resultMap="totalIphoneResult">
+		SELECT 
+			POSTDATE, COUNT(*) AS COUNT
+		FROM
+			TOTAL_IPHONE
+		WHERE
+			KRNAME LIKE #{krname} AND 
+			GB LIKE #{gb} AND
+			CONDITIONS LIKE CONCAT(#{conditions}, '%') AND
+			CHANGES LIKE #{changes} AND
+			CONTRACT LIKE #{contract} AND
+			GURANTEE LIKE #{gurantee} AND
+			SOLD LIKE CONCAT(#{sold}, '%')
+		GROUP BY 
+			POSTDATE
+	</select>
+	
+	<!-- 한국모델명 -->
+	<select id="krnameList" resultMap="string">
+		SELECT 
+			DISTINCT(KRNAME) 
+		FROM 
+			TOTAL_IPHONE
+	</select>
+	
+	<!-- gb명 -->
+	<select id="gbList" resultMap="string">
+		SELECT 
+			DISTINCT(GB) 
+		FROM 
+			TOTAL_IPHONE
+		WHERE 
+			KRNAME = #{krname}
+	</select>
+	
+	<!-- 상태명 -->
+	<select id="condtionsList" resultMap="string">
+		SELECT 
+			DISTINCT(CONDITIONS) 
+		FROM 
+			TOTAL_IPHONE
+		WHERE 
+			KRNAME = #{krname} AND 
+			GB = #{gb}
+	</select>
+	
+	<!-- 확정기변, 유심기변  -->
+	<select id="changesList" resultMap="string">
+		SELECT 
+			DISTINCT(CHANGES) 
+		FROM 
+			TOTAL_IPHONE
+		WHERE 
+			KRNAME = #{krname} AND 
+			GB = #{gb} AND
+			CONDITIONS = #{conditions}
+	</select>
+	
+	<!-- 요금할인약정 여부 -->
+	<select id="contractList" resultMap="string">
+		SELECT 
+			DISTINCT(CONTRACT) 
+		FROM 
+			TOTAL_IPHONE
+		WHERE 
+			KRNAME = #{krname} AND 
+			GB = #{gb} AND
+			CHANGES = #{changes} AND
+			CONDITIONS = #{conditions}
+	</select>
+	
+	<!-- 무상보증기간 여부 -->
+	<select id="guaranteeList" resultMap="string">
+		SELECT 
+			DISTINCT(GUARANTEE) 
+		FROM 
+			TOTAL_IPHONE
+		WHERE 
+			KRNAME = #{krname} AND 
+			GB = #{gb} AND
+			CHANGES = #{changes} AND
+			CONDITIONS = #{conditions} AND
+			CONTRACT = #{contract} AND
+	</select>
+	
+	<!-- 판매여부 -->
+	<select id="soldList" resultMap="string">
+		SELECT 
+			DISTINCT(SOLD) 
+		FROM 
+			TOTAL_IPHONE
+		WHERE 
+			KRNAME = #{krname} AND 
+			GB = #{gb} AND
+			CHANGES = #{changes} AND
+			CONDITIONS = #{conditions} AND
+			CONTRACT = #{contract} AND
+			GUARANTEE = #{guarantee}
+	</select>
+</mapper>
