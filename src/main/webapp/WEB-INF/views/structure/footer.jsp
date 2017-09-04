@@ -26,9 +26,9 @@
                         <li><a href="#">Benefits</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a>
-                    <a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                    <p class="copyright">Company Name © 2016</p>
+                <div class="col-md-3 item social"><a href="#"><i class="icon ion-social-google"></i></a><a href="#"><i class="icon ion-social-github"></i></a>
+                    <a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a>
+                    <p class="copyright">Copyright(C) 2017. bigto. All rights reserved.</p>
                 </div>
             </div>
         </div>

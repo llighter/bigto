@@ -23,13 +23,13 @@ public class TotalIphone {
 	private Date postdate;
 	private Date reldate;
 	private Date disdate;
-	private Date dategap;
+	private int dategap;
 	private String model;
 	private String gb;
 	private String krname;
 	private int soldprice;
 	private int relprice;
-	private int soldrate;
+	private Double soldrate;
 	private String contract;
 	private String agency;
 	private String guarantee;
@@ -41,6 +41,13 @@ public class TotalIphone {
 	private int count;
 	// FallPriceRate에 사용
 	private double fallrate;
+	//첫등록일, 마지막 등록일
+	private Date start_date;
+	private Date end_date;
+	//판매량,등록양
+	private int soldcount;
+	private int regcount;
+	
 	
 	public int getId() {
 		return id;
@@ -66,10 +73,10 @@ public class TotalIphone {
 	public void setDisdate(Date disdate) {
 		this.disdate = disdate;
 	}
-	public Date getDategap() {
+	public int getDategap() {
 		return dategap;
 	}
-	public void setDategap(Date dategap) {
+	public void setDategap(int dategap) {
 		this.dategap = dategap;
 	}
 	public String getModel() {
@@ -102,10 +109,10 @@ public class TotalIphone {
 	public void setRelprice(int relprice) {
 		this.relprice = relprice;
 	}
-	public int getSoldrate() {
+	public Double getSoldrate() {
 		return soldrate;
 	}
-	public void setSoldrate(int soldrate) {
+	public void setSoldrate(Double soldrate) {
 		this.soldrate = soldrate;
 	}
 	public String getContract() {
@@ -162,6 +169,30 @@ public class TotalIphone {
 	public void setFallrate(double fallrate) {
 		this.fallrate = fallrate;
 	}
-	
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	public Date getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+	public int getSoldcount() {
+		return soldcount;
+	}
+	public void setSoldcount(int soldcount) {
+		this.soldcount = soldcount;
+	}
+	public int getRegcount() {
+		return regcount;
+	}
+	public void setRegcount(int regcount) {
+		this.regcount = regcount;
+	}
+
 
 }

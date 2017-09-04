@@ -4,11 +4,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace ="com.big.to.repository.FallPriceRateDAO">
 	<resultMap type="totalIphone" id="totalIphoneResult"/>
-	<resultMap type="infoIhone" id="infoIphoneResult"/>
+	<resultMap type="infoIphone" id="infoIphoneResult"/>
 	<resultMap type="java.lang.String" id="string" />
 	
 	<!-- info테이블과 join하여 특정 모델의 조건에 따른 기간별 출고가대비 가격감소율 조회 -->
-	<select id="fallRateList" resultMap = "totailIphoneResult">
+	<select id="fallRateList" resultMap = "totalIphoneResult">
 		SELECT
 			POSTDATE, ROUND(((I.RELPRICE-T.SOLDPRICE)/I.RELPRICE * 100), 1) AS FALLRATE
 		FROM

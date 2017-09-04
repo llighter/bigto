@@ -12,9 +12,9 @@
 	<div class="simple-slider">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Slideshow+Image&amp;w=1920&amp;h=500);"></div>
-                <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Slideshow+Image&amp;w=1920&amp;h=500);"></div>
-                <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Slideshow+Image&amp;w=1920&amp;h=500);"></div>
+                <div class="swiper-slide" style="background-image:url('${ Path }/resources/img/aboutus_crop.jpg');"></div>
+                <div class="swiper-slide" style="background-image:url('${ Path }/resources/img/graph01_crop.jpg');"></div>
+                <div class="swiper-slide" style="background-image:url('${ Path }/resources/img/analysis_crop.jpg');"></div>
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
@@ -30,20 +30,17 @@
             </div>
             <div class="row articles">
                 <div class="col-md-4 col-sm-6 item">
-                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/desk.jpg"></a>
-                    <h3 class="name">Article Title</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
-                        Aliquam varius finibus est, interdum justo suscipit id.</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
+                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/aboutus01.jpg"></a>
+                    <h3 class="name">About us</h3>
+                    <p class="description">우리는 빅티오다 으갸갸갸</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
                 <div class="col-md-4 col-sm-6 item">
-                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/building.jpg"></a>
-                    <h3 class="name">Article Title</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
-                        Aliquam varius finibus est, interdum justo suscipit id.</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
+                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/graph.png" ></a>
+                    <h3 class="name">Graph</h3>
+                    <p class="description">네 똥폰의 하락세를 알아보자</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
                 <div class="col-md-4 col-sm-6 item">
-                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/loft.jpg"></a>
-                    <h3 class="name">Article Title</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
-                        Aliquam varius finibus est, interdum justo suscipit id.</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
+                    <a href="#"><img class="img-responsive" src="${ Path }/resources/img/analysis01.jpg"></a>
+                    <h3 class="name">Analysis</h3>
+                    <p class="description">이렇게 요렇게 저렇게 분석하면 짠</p><a href="#" class="action"><i class="glyphicon glyphicon-circle-arrow-right"></i></a></div>
             </div>
         </div>
     </div>

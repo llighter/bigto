@@ -24,6 +24,12 @@ public class SampleController {
 	@Autowired(required = false)
 	SampleService service;
 	
+	@RequestMapping("ft")
+	public ModelAndView firebase(ModelAndView mav){
+		mav.setViewName("firebase_test");
+		return mav;
+	}
+	
 	@RequestMapping("sample.do")
 	public ModelAndView sample(Sample sam, ModelAndView mav){
 		mav.addObject("sample", service.sample(sam));
