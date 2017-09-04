@@ -1,17 +1,12 @@
 package com.big.to.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
+import com.big.to.vo.DateRange;
+import com.big.to.vo.SamplePhoneWithCordinate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.big.to.service.SampleService;
@@ -20,6 +15,7 @@ import com.big.to.vo.SamplePhone;
 
 @Controller
 @RequestMapping("/*")
+@CrossOrigin
 public class SampleController {
 	@Autowired(required = false)
 	SampleService service;
@@ -121,6 +117,34 @@ public class SampleController {
 		
 		return resultMap;
 	}
+
+	@RequestMapping(value="query_line_phone_range.do", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryLinePhoneRange(
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions,
+			@RequestParam("changes") String changes,
+			@RequestParam("start_date") String start_date,
+			@RequestParam("end_date") String end_date) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<SamplePhoneWithCordinate> spList = service.phoneLineWithRange(krname, gb, conditions, changes, start_date, end_date);
+//		List<String> labels = new ArrayList<String>();
+//		List<Integer> data = new ArrayList<Integer>();
+
+//		for(SamplePhone sp : spList) {
+//			labels.add(sp.getDate());
+//			data.add(sp.getPrice());
+//		}
+
+//		resultMap.put("type", "line");
+//		resultMap.put("labels", labels);
+		resultMap.put("data", spList);
+//		resultMap.put("label", krname);
+
+
+		return resultMap;
+	}
 	
 	@RequestMapping(value="krnameList.do", method=RequestMethod.GET)
 	public @ResponseBody Map<String, Object> queryKrnameList() {
@@ -162,6 +186,32 @@ public class SampleController {
 		
 		resultMap.put("changesList", changesList);
 		
+		return resultMap;
+	}
+	@RequestMapping(value="dateRange.do", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryDateRange(
+			@RequestParam("krname") String krname,
+			@RequestParam("gb") String gb,
+			@RequestParam("conditions") String conditions,
+			@RequestParam("changes") String changes) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		DateRange dateRange = service.dateRange(krname, gb, conditions, changes);
+
+
+		resultMap.put("dateRange", dateRange);
+
+		return resultMap;
+	}
+	@RequestMapping(value="dateLabels.do", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> queryDateLabels(
+			@RequestParam("start_date") String start_date,
+			@RequestParam("end_date") String end_date) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<String> labels = service.dateLabels(start_date, end_date);
+
+
+		resultMap.put("labels", labels);
+
 		return resultMap;
 	}
 }

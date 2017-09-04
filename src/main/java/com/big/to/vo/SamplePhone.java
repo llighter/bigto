@@ -16,6 +16,4 @@ public class SamplePhone {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
 }

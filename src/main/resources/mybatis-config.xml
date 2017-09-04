@@ -6,9 +6,11 @@
 		<!-- 별명 설정 -->
 		<typeAlias alias="sample" type="com.big.to.vo.Sample"/>
 		<typeAlias alias="samplePhone" type="com.big.to.vo.SamplePhone"/>
+		<typeAlias type="com.big.to.vo.SamplePhoneWithCordinate" alias="samplePhoneWithCordinate"/>
 		<typeAlias alias="totalIphone" type="com.big.to.vo.TotalIphone"/>
 		<typeAlias alias="infoIphone" type="com.big.to.vo.InfoIphone"/>
 		<typeAlias alias="graph" type="com.big.to.vo.Graph"/>
+		<typeAlias type="com.big.to.vo.DateRange" alias="dateRange"/>
 	</typeAliases>
 </configuration>
 	

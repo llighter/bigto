@@ -6,7 +6,9 @@
 	<resultMap type="sample" id="sampleResult" />
 	<resultMap type="samplePhone" id="samplePhoneResult" />
 	<resultMap type="samplePhone" id="phoneLineResult" />
+	<resultMap id="samplePhoneWithCordinateResult" type="samplePhoneWithCordinate" />
 	<resultMap type="java.lang.String" id="string" />
+	<resultMap id="dateRangeResult" type="dateRange" />
 	
 	<!-- TEST: cetizen 테이블에서 데이터 조회 -->
 	<select id="sample" resultMap="sampleResult">
@@ -33,9 +35,9 @@
 	<select id="phoneLine" resultMap="phoneLineResult">
 		select 
 			postdate as date,
-			round(avg(price),0) as price 
+			round(avg(soldprice),0) as price
 		from
-			iphone4
+			total_iphone2
 		where
 			krname like #{krname}
 		    and gb like #{gb}
@@ -44,18 +46,43 @@
 		group by
 			date
 	</select>
+
+	<!-- Line: 특정 모델의 조건에 따른 기간별 평균 가격조회 -->
+	<select id="phoneLineWithRange" resultMap="samplePhoneWithCordinateResult">
+		select
+		postdate as x,
+		round(avg(soldprice),0) as y
+		from
+		total_iphone2
+		where
+		krname like #{krname}
+		and gb like #{gb}
+		and conditions like CONCAT(#{conditions},'%')
+		and changes like #{changes}
+		and postdate BETWEEN #{start_date} and #{end_date}
+		group by
+		x
+	</select>
 	
 	<select id="krnameList" resultMap="string">
-		select distinct(krname) from iphone4;
+		select distinct(krname) from total_iphone2;
 	</select>
 	<select id="gbList" resultMap="string">
-		select distinct(gb) from iphone4 where krname = #{krname}
+		select distinct(gb) from total_iphone2 where krname = #{krname}
 	</select>
 	<select id="conditionsList" resultMap="string">
-		select distinct(conditions) from iphone4 where krname=#{krname} and gb=#{gb}
+		select distinct(conditions) from total_iphone2 where krname=#{krname} and gb=#{gb}
 	</select>
 	<select id="changesList" resultMap="string">
-		select distinct(changes) from iphone4 where krname=#{krname} and gb=#{gb} and conditions=#{conditions}
+		select distinct(changes) from total_iphone2 where krname=#{krname} and gb=#{gb} and conditions=#{conditions}
+	</select>
+
+	<select id="dateRange" resultMap="dateRangeResult">
+		select min(postdate) as start_date, max(postdate) as end_date from total_iphone2 where krname=#{krname} and gb=#{gb} and conditions=#{conditions} and changes=#{changes}
+	</select>
+
+	<select id="dateLabels" resultMap="string">
+		select Date from date_range where Date BETWEEN #{start_date} and #{end_date}
 	</select>
 
 	

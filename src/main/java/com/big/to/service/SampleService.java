@@ -1,9 +1,12 @@
 package com.big.to.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.big.to.vo.DateRange;
+import com.big.to.vo.SamplePhoneWithCordinate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,19 @@ public class SampleService {
 		map.put("changes", changes);
 		return dao.phoneLine(map);
 	}
+
+	public List<SamplePhoneWithCordinate> phoneLineWithRange(String krname, String gb, String conditions, String changes, String start_date, String end_date) {
+		// Map 선언
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("krname", krname);
+		map.put("gb", gb);
+		map.put("conditions", conditions);
+		map.put("changes", changes);
+		map.put("start_date", start_date);
+		map.put("end_date", end_date);
+
+		return dao.phoneLineWithRange(map);
+	}
 	
 	public List<String> krnameList() {
 		return dao.krnameList();
@@ -56,6 +72,24 @@ public class SampleService {
 		map.put("gb", gb);
 		map.put("conditions", conditions);
 		return dao.changesList(map);
+	}
+
+	public DateRange dateRange(String krname, String gb, String conditions, String changes) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("krname", krname);
+		map.put("gb", gb);
+		map.put("conditions", conditions);
+		map.put("changes", changes);
+
+		return dao.dateRange(map);
+	}
+
+	public List<String> dateLabels(String start_date, String end_date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start_date", start_date);
+		map.put("end_date", end_date);
+
+		return dao.dateLabels(map);
 	}
 	
 }
