@@ -23,13 +23,13 @@ public class TotalIphone {
 	private Date postdate;
 	private Date reldate;
 	private Date disdate;
-	private Date dategap;
+	private int dategap;
 	private String model;
 	private String gb;
 	private String krname;
 	private int soldprice;
 	private int relprice;
-	private int soldrate;
+	private Double soldrate;
 	private String contract;
 	private String agency;
 	private String guarantee;
@@ -37,6 +37,7 @@ public class TotalIphone {
 	private String conditions;
 	private String component;
 	private String sold;
+	
 	public int getId() {
 		return id;
 	}
@@ -61,10 +62,10 @@ public class TotalIphone {
 	public void setDisdate(Date disdate) {
 		this.disdate = disdate;
 	}
-	public Date getDategap() {
+	public int getDategap() {
 		return dategap;
 	}
-	public void setDategap(Date dategap) {
+	public void setDategap(int dategap) {
 		this.dategap = dategap;
 	}
 	public String getModel() {
@@ -97,10 +98,10 @@ public class TotalIphone {
 	public void setRelprice(int relprice) {
 		this.relprice = relprice;
 	}
-	public int getSoldrate() {
+	public Double getSoldrate() {
 		return soldrate;
 	}
-	public void setSoldrate(int soldrate) {
+	public void setSoldrate(Double soldrate) {
 		this.soldrate = soldrate;
 	}
 	public String getContract() {

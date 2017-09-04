@@ -17,6 +17,7 @@ public class InfoIphone {
 	private Date reldate;
 	private int relprice;
 	private Date disdate;
+	
 	public String getModel() {
 		return model;
 	}
