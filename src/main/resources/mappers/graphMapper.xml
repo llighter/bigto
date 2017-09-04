@@ -7,15 +7,111 @@
 	<resultMap type="java.lang.String" id="string" />
 
 	<select id="selectKrnameList" resultMap="string">
-		select distinct(krname) from total_iphone;
+		select distinct(krname) as krname from total_iphone;
 	</select>
 
 	<select id="selectGbList" resultMap="string">
-		select distinct(gb) from total_iphone where krname = #{krname}
+		select distinct(gb) as gb from total_iphone where krname = #{krname}
+	</select>
+	<select id="conditionsList" resultMap="string">
+		select distinct(conditions) as conditions from iphone4 where krname=#{krname} and gb=#{gb}
+	</select>
+	<select id="changesList" resultMap="string">
+		select distinct(changes) as changes from iphone4 where krname=#{krname} and gb=#{gb} and conditions=#{conditions}
 	</select>
 	
-	<select id="selectDatePoint" resultMap="string">
-		select distinct(conditions) from iphone4 where krname=#{krname} and gb=#{gb}
+	<!-- TODO : 쿼리문 도움이 필요함 -->
+	<select id="selectTerm" resultMap="string">
+		select
+			max(distinct(postdate)) as end_date
+			,min(distinct(postdate)) as start_date
+		from total_iphone
+		where krname=#{krname} and gb=#{gb}
+	</select>
+	
+	<select id="selectTermMulti" resultMap="string">
+		select
+			max(distinct(postdate)) as end_date
+			,min(distinct(postdate)) as start_date
+		from total_iphone
+		where krnameGb=#{krnameGb}
+	</select>
+	
+<!-- 	select 
+			postdate
+			,round(avg(SOLDPRICE),0) as SOLDPRICE
+		from 
+			total_iphone
+		where
+			krname = '아이폰 4S'
+			and gb= '16GB'
+			and '2014-05-19' <= postdate
+			and '2017-08-30' >= postdate
+		group by postdate -->
+	<select id="lineSingle" resultMap="totalIphoneResult">
+		select 
+			postdate as postdate
+			,round(avg(soldprice),0) as soldprice
+		from 
+			total_iphone
+		where
+			krname = #{krname} 
+			and gb= #{gb}
+			and conditions = #{conditions}
+		    and changes = #{changes}
+			and #{start_date} &lt;= postdate
+			and #{end_date} &gt;= postdate
+		group by
+			postdate
+	</select>
+		
+	<select id="lineMulti" resultMap="totalIphoneResult">
+		select 
+			postdate as postdate
+			,round(avg(soldprice),0) as soldprice
+			,krnamegb as krnamegb
+		from 
+			total_iphone
+		where
+			krname = #{krname} 
+			and gb=#{gb}
+			and conditions = #{conditions}
+		    and changes = #{changes}
+			and #{start_date} &lt;= postdate
+			and #{end_date} &gt;= postdate
+		group by
+			postdate
+	</select>
+	
+	
+	<select id="barSingleSoldCount" resultMap="totalIphoneResult">
+		select 
+			postdate as postdate
+			,count(*) as soldcount
+		from 
+			total_iphone
+		where
+			krnamegb = #{krnamegb} 
+			and #{start_date} &lt;= postdate
+			and #{end_date} &gt;= postdate
+			and #{sold} = '판매가 완료된 상품 입니다.' 
+		group by
+			postdate
+			<!-- (select substr(postdate,1,7)) -->
+	</select>
+	
+	<select id="barSingleRegCount" resultMap="totalIphoneResult">
+		select 
+			postdate as postdate
+			,count(*) as regcount
+		from 
+			total_iphone
+		where
+			krnamegb = #{krnamegb} 
+			and #{start_date} &lt;= postdate
+			and #{end_date} &gt;= postdate
+		group by
+			postdate
 	</select>
 
 
@@ -50,15 +146,5 @@
 		    and changes like #{changes}
 		group by
 			date
-	</select>
-	
-
-	<select id="conditionsList" resultMap="string">
-		select distinct(conditions) from iphone4 where krname=#{krname} and gb=#{gb}
-	</select>
-	<select id="changesList" resultMap="string">
-		select distinct(changes) from iphone4 where krname=#{krname} and gb=#{gb} and conditions=#{conditions}
-	</select>
-
-	
+	</select>	
 </mapper>

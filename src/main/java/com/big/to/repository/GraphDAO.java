@@ -12,10 +12,15 @@ public interface GraphDAO {
 	
 	public List<String> selectKrnameList();
 	public List<String> selectGbList(String krname);
-	public List<String> selectTerm(String krnameGb);
+	public List<String> selectTerm(String krname, String gb);
+	public List<String> selectTermMulti(String krnameGb);
 	
-	public List<Graph> lineA(Map<String, Object> map);
+	public List<Graph> renameKrnameGb(Map<String, Object> map);
 	
+	public List<Graph> lineSingle(Map<String, Object> map);
+	public List<Graph> lineMulti(Map<String, Object> map);
+	
+	public List<Graph> barSingle(Map<String, Object> map);
 	
 
 
