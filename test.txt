@@ -1,1 +1,28 @@
 whynot 이클립스 연동확인 텍스트파일 17.09.01
+
+https://www.websequencediagrams.com/
+
+title USER PREFERRED USED VALUE ( Single graph )
+
+note right of USER:Select PhoneModel \n Condition, Changes
+
+USER->View: select value ( krname and other 3)
+View->GraphController: Send value - ajax
+GraphController->GraphService: value transfer
+GraphService->+DataBase:select query
+
+DataBase-->-GraphService:return value object
+GraphService-->GraphController:return value object
+GraphController-->View: Receive data - ajax
+note left of View: Setting Term
+View->+USER:Set value (start, end)
+USER-->-View:Reselect date (start, end)
+View->GraphController: Send value - ajax
+GraphController->GraphService: value transfer
+GraphService->+DataBase:select query
+
+DataBase-->-GraphService:return value object
+GraphService-->GraphController:return value object
+GraphController-->View: Receive data - ajax
+View-->USER:set graph
+note right of USER: Change or select graph value \n get other graph
